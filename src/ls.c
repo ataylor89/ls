@@ -50,7 +50,7 @@ void preprocess(DirectoryListing* dl)
         if (stat(file_name, file_attr) == -1)
         {
             dl->status_code = 1;
-            sprintf(dl->error_msg, "Error calling stat on file %s\n", file_name);
+            sprintf(dl->error_msg, "Error calling stat on file %s.\n", file_name);
             return;
         }
 
@@ -68,7 +68,7 @@ void preprocess(DirectoryListing* dl)
     if (closedir(dir) != 0)
     {
         dl->status_code = 1;
-        dl->error_msg = "Error closing directory\n";
+        dl->error_msg = "Error closing directory.\n";
     }
 }
 
@@ -109,7 +109,7 @@ DirectoryListing* ls(char* dir_name)
         if (stat(file_name, file_attr) == -1)
         {
             dl->status_code = 1;
-            sprintf(dl->error_msg, "Error calling stat on file %s\n", file_name);
+            sprintf(dl->error_msg, "Error calling stat on file %s.\n", file_name);
             return dl;
         }
 

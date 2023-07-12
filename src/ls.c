@@ -22,7 +22,7 @@ int num_digits(long long file_size)
     return count;
 }
 
-void preprocess(char* dir_name, DirectoryListing* dl)
+void preprocess(DirectoryListing* dl)
 {
     Metadata* metadata;
     DIR* dir;
@@ -32,13 +32,12 @@ void preprocess(char* dir_name, DirectoryListing* dl)
 
     dl->metadata = (Metadata *) malloc(sizeof(Metadata));
     metadata = dl->metadata;
-    metadata->dir_name = dir_name;
     metadata->num_entries = 0;
     metadata->max_file_size = 0;
     memset(metadata->file_size_format, 0, 10);
     file_attr = (struct stat *) malloc(sizeof(struct stat));
 
-    if ((dir = opendir(dir_name)) == NULL)
+    if ((dir = opendir(dl->dir_name)) == NULL)
     {
         dl->status_code = 1;
         dl->error_msg = "Error opening directory.\n";
@@ -47,7 +46,7 @@ void preprocess(char* dir_name, DirectoryListing* dl)
 
     while ((dir_ent = readdir(dir)) != NULL)
     {
-        sprintf(file_name, "%s/%s", dir_name, dir_ent->d_name);
+        sprintf(file_name, "%s/%s", dl->dir_name, dir_ent->d_name);
 
         if (stat(file_name, file_attr) == -1)
         {
@@ -85,13 +84,14 @@ DirectoryListing* ls(char* dir_name)
     struct group* gr;
 
     dl = (DirectoryListing *) malloc(sizeof(DirectoryListing));
+    dl->dir_name = dir_name;
     dl->buf = (char *) malloc(10000);
     memset(dl->buf, 0, 10000);
     dl->error_msg = (char *) malloc(100);
     memset(dl->error_msg, 0, 100);
     file_attr = (struct stat *) malloc(sizeof(struct stat));
 
-    preprocess(dir_name, dl);
+    preprocess(dl);
 
     if (dl->status_code != 0)
     {

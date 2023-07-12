@@ -3,6 +3,7 @@ typedef struct Metadata
     char* dir_name;
     int num_entries;
     long long max_file_size;
+    int file_size_field_length;
     char file_size_format[10];
 } Metadata;
 

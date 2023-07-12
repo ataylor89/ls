@@ -29,7 +29,6 @@ void preprocess(char* dir_name, DirectoryListing* dl)
     struct dirent* dir_ent;
     struct stat* file_attr;
     char file_name[200];
-    int file_size_field_length;
 
     dl->metadata = (Metadata *) malloc(sizeof(Metadata));
     metadata = dl->metadata;
@@ -65,9 +64,8 @@ void preprocess(char* dir_name, DirectoryListing* dl)
         metadata->num_entries++;
     }
 
-    file_size_field_length = num_digits(metadata->max_file_size);
-    sprintf(metadata->file_size_format, "%%%d", file_size_field_length);
-    strcat(metadata->file_size_format, "lld");
+    metadata->file_size_field_length = num_digits(metadata->max_file_size);
+    sprintf(metadata->file_size_format, "%%%dlld", metadata->file_size_field_length);
 
     if (closedir(dir) != 0)
     {

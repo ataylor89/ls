@@ -85,9 +85,7 @@ DirectoryListing* ls(char* dir_name)
     dl = (DirectoryListing *) malloc(sizeof(DirectoryListing));
     dl->dir_name = dir_name;
     dl->buf = (char *) malloc(10000);
-    memset(dl->buf, 0, 10000);
     dl->error_msg = (char *) malloc(100);
-    memset(dl->error_msg, 0, 100);
     file_attr = (struct stat *) malloc(sizeof(struct stat));
 
     preprocess(dl);

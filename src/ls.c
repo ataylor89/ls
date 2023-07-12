@@ -33,7 +33,6 @@ void preprocess(char* dir_name, DirectoryListing* dl)
 
     dl->metadata = (Metadata *) malloc(sizeof(Metadata));
     metadata = dl->metadata;
-
     metadata->dir_name = dir_name;
     metadata->num_entries = 0;
     metadata->max_file_size = 0;

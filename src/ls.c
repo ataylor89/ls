@@ -34,7 +34,6 @@ void preprocess(DirectoryListing* dl)
     metadata = dl->metadata;
     metadata->num_entries = 0;
     metadata->max_file_size = 0;
-    memset(metadata->file_size_format, 0, 10);
     file_attr = (struct stat *) malloc(sizeof(struct stat));
 
     if ((dir = opendir(dl->dir_name)) == NULL)

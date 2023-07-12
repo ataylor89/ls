@@ -1,0 +1,19 @@
+typedef struct Metadata
+{
+    char* dir_name;
+    int num_entries;
+    long long max_file_size;
+    char file_size_format[10];
+} Metadata;
+
+typedef struct DirectoryListing
+{
+    int status_code;
+    char* buf;
+    char* error_msg;
+    struct Metadata* metadata;
+} DirectoryListing;
+
+void preprocess(char* dir_name, DirectoryListing* dl);
+
+DirectoryListing* ls(char* dir_name);

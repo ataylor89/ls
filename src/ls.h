@@ -12,7 +12,7 @@ typedef struct DirectoryListing
     int status_code;
     char* buf;
     char* error_msg;
-    struct Metadata* metadata;
+    Metadata* metadata;
 } DirectoryListing;
 
 void preprocess(char* dir_name, DirectoryListing* dl);

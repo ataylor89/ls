@@ -15,6 +15,4 @@ typedef struct DirectoryListing
     Metadata* metadata;
 } DirectoryListing;
 
-void preprocess(DirectoryListing* dl);
-
 DirectoryListing* ls(char* dir_name);

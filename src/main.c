@@ -3,25 +3,34 @@
 
 int main(int argc, char** argv)
 {
-    struct DirectoryListing* dl;
+    Listing* listing;
+    char* filename;
+    char* buf;
 
-    if (argc == 1)
+    switch (argc)
     {
-        dl = ls(".");
-        printf("%s", dl->status_code == 0 ? dl->buf : dl->error_msg);
-        return dl->status_code;
+        case 1:
+            filename = ".";
+            break;
+        case 2:
+            filename = argv[1];
+            break;
+        default:
+            printf("Usage: %s [dir_name]\n", argv[0]);
+            return 0;
     }
 
-    else if (argc == 2)
+    listing = ls(filename);
+    
+    if (listing->status_code != 0)
     {
-        dl = ls(argv[1]);
-        printf("%s", dl->status_code == 0 ? dl->buf : dl->error_msg);
-        return dl->status_code;
+        fprintf(stderr, "%s", listing->error_msg);
+        return listing->status_code;
     }
 
-    else
-    {
-        printf("Usage: %s [dir_name]\n", argv[0]);
-        return 0;
-    }
+    buf = concat(listing);
+
+    printf("%s", buf);
+
+    return 0;
 }

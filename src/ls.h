@@ -1,18 +1,27 @@
+typedef struct Entry
+{
+    char* filename;
+    char* buf;
+    int length;
+} Entry;
+
 typedef struct Metadata
 {
-    int num_entries;
-    long long max_file_size;
-    int file_size_field_length;
-    char file_size_format[10];
+    long long max_filesize;
+    int filesize_field_length;
+    char filesize_format[10];
 } Metadata;
 
-typedef struct DirectoryListing
+typedef struct Listing
 {
-    char* dir_name;
-    int status_code;
-    char* buf;
-    char* error_msg;
+    char* dirname;
+    int num_entries;
+    Entry** start;
     Metadata* metadata;
-} DirectoryListing;
+    int status_code;
+    char* error_msg;
+} Listing;
 
-DirectoryListing* ls(char* dir_name);
+Listing* ls(char* dirname);
+
+char* concat(Listing* listing);

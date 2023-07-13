@@ -80,6 +80,7 @@ Listing* ls(char* dirname)
     struct passwd* pw;
     struct group* gr;
     char timestamp[20];
+    int length;
 
     listing = (Listing *) malloc(sizeof(Listing));
     listing->dirname = dirname;
@@ -122,7 +123,7 @@ Listing* ls(char* dirname)
         gr = getgrgid(file_attr->st_gid);
         strftime(timestamp, 20, "%b %d %H:%M", localtime(&file_attr->st_mtime));
 
-        int length = 11;
+        length = 11;
         length += strlen(pw->pw_name) + 1;
         length += strlen(gr->gr_name) + 1;
         length += metadata->filesize_field_length + 1;

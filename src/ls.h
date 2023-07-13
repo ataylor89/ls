@@ -17,10 +17,12 @@ typedef struct Listing
     char* dirname;
     int num_entries;
     Entry** start;
+    char* buf;
+    int length;
     Metadata* metadata;
     int status_code;
     char* error_msg;
 } Listing;
 
 Listing* ls(char* dirname);
-char* concat(Listing* listing);
+void concat(Listing* listing);

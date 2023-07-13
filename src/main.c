@@ -28,9 +28,9 @@ int main(int argc, char** argv)
         return listing->status_code;
     }
 
-    buf = concat(listing);
+    concat(listing);
 
-    printf("%s", buf);
+    fwrite(listing->buf, 1, listing->length, stdout);
 
     return 0;
 }

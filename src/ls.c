@@ -148,7 +148,7 @@ Listing* ls(char* dirname)
         strcat(entry->buf, " ");
         strcat(entry->buf, gr->gr_name);
         strcat(entry->buf, " ");
-        sprintf(entry->buf + strlen(entry->buf), listing->metadata->filesize_format, file_attr->st_size);
+        sprintf(entry->buf + strlen(entry->buf), metadata->filesize_format, file_attr->st_size);
         strcat(entry->buf, " ");
         strcat(entry->buf, timestamp);
         strcat(entry->buf, " ");
@@ -163,15 +163,14 @@ Listing* ls(char* dirname)
     return listing;
 }
 
-char* concat(Listing* listing)
+void concat(Listing* listing)
 {
     Entry** cursor;
     Entry* entry;
     char* buf;
-    int length, offset, i;
+    int i, offset, length;
 
     cursor = listing->start;
-    offset = 0;
 
     for (i = 0; i < listing->num_entries; i++)
     {
@@ -182,6 +181,7 @@ char* concat(Listing* listing)
 
     cursor = listing->start;
     buf = (char *) malloc(sizeof(char) * length);
+    offset = 0;
 
     for (i = 0; i < listing->num_entries; i++)
     {
@@ -191,5 +191,6 @@ char* concat(Listing* listing)
         cursor++;
     }
 
-    return buf;
+    listing->buf = buf;
+    listing->length = length;
 }

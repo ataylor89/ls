@@ -19,7 +19,7 @@ int main(int argc, char** argv)
             return 0;
     }
     
-    if ((dl = ls(filename)) == NULL)
+    if ((dl = get_directory_listing(filename)) == NULL)
     {
         fprintf(stderr, "Error getting directory listing for %s\n", filename);
         return 1;

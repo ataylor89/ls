@@ -29,5 +29,5 @@ typedef struct DirectoryListing
     int length;
 } DirectoryListing;
 
-DirectoryListing* ls(char* dirname);
+DirectoryListing* get_directory_listing(char* dirname);
 void format_directory_listing(DirectoryListing* dl);

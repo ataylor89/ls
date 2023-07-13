@@ -66,7 +66,7 @@ int preprocess(DirectoryListing* dl)
     return 0;
 }
 
-DirectoryListing* ls(char* dirname)
+DirectoryListing* get_directory_listing(char* dirname)
 {
     DirectoryListing* dl;
     Metadata* metadata;

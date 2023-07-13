@@ -23,5 +23,4 @@ typedef struct Listing
 } Listing;
 
 Listing* ls(char* dirname);
-
 char* concat(Listing* listing);

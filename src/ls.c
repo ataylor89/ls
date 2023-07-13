@@ -203,3 +203,35 @@ void format_directory_listing(DirectoryListing* dl)
     dl->buf = buf;
     dl->length = length;
 }
+
+void sort_directory_listing(DirectoryListing* dl)
+{
+    Record** records;
+    Record* tmp;
+    int i, j, k, size, result;
+
+    records = dl->start;
+    size = dl->num_records;
+
+    for (i = 0; i < size - 1; i++)
+    {
+        k = i;
+
+        for (j = i + 1; j < size; j++)
+        {
+            result = strcmp(records[k]->filename, records[j]->filename);
+
+            if (result > 0)
+            {
+                k = j;
+            }
+        }
+
+        if (k != i)
+        {
+            tmp = records[i];
+            records[i] = records[k];
+            records[k] = tmp;
+        }
+    }
+}

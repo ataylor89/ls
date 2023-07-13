@@ -30,4 +30,5 @@ typedef struct DirectoryListing
 } DirectoryListing;
 
 DirectoryListing* get_directory_listing(char* dirname);
+void sort_directory_listing(DirectoryListing* dl);
 void format_directory_listing(DirectoryListing* dl);

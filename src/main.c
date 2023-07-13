@@ -25,6 +25,8 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    sort_directory_listing(dl);
+
     format_directory_listing(dl);
 
     fwrite(dl->buf, 1, dl->length, stdout);

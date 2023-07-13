@@ -28,7 +28,7 @@ int preprocess(DirectoryListing* dl)
     DIR* dir;
     struct dirent* dir_ent;
     struct stat file_attr;
-    char filename[200];
+    char filename[256];
 
     dl->metadata = (Metadata *) malloc(sizeof(Metadata));
     metadata = dl->metadata;

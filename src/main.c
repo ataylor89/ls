@@ -3,9 +3,8 @@
 
 int main(int argc, char** argv)
 {
-    Listing* listing;
+    DirectoryListing* dl;
     char* filename;
-    char* buf;
 
     switch (argc)
     {
@@ -16,21 +15,19 @@ int main(int argc, char** argv)
             filename = argv[1];
             break;
         default:
-            printf("Usage: %s [dir_name]\n", argv[0]);
+            printf("Usage: %s [path]\n", argv[0]);
             return 0;
     }
-
-    listing = ls(filename);
     
-    if (listing->status_code != 0)
+    if ((dl = ls(filename)) == NULL)
     {
-        fprintf(stderr, "%s", listing->error_msg);
-        return listing->status_code;
+        fprintf(stderr, "Error getting directory listing for %s\n", filename);
+        return 1;
     }
 
-    concat(listing);
+    format_directory_listing(dl);
 
-    fwrite(listing->buf, 1, listing->length, stdout);
+    fwrite(dl->buf, 1, dl->length, stdout);
 
     return 0;
 }

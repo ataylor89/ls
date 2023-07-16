@@ -42,7 +42,6 @@ int main(int argc, char** argv)
     }
 
     close(fds[1]);
-    sleep(1);
 
     char program_output[1024];
     int n;

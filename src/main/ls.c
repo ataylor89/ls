@@ -156,6 +156,7 @@ void format_directory_listing(DirectoryListing* dl)
         length += strlen(record->filename) + 1;
         cursor++;
     }
+    length += 2;
 
     cursor = dl->start;
     buf = (char *) malloc(length);
@@ -199,6 +200,8 @@ void format_directory_listing(DirectoryListing* dl)
 
         cursor++;
     }
+
+    buf[offset + 1] = EOF;
 
     dl->buf = buf;
     dl->length = length;

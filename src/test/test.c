@@ -5,15 +5,15 @@
 #include <string.h>
 #include <ctype.h>
 
-void diagnostics(char* program_output, int n, int m)
+void diagnostics(char* program_output, int length, int num_iterations)
 {
     char c;
 
     printf("Diagnostics:\n");
 
-    for (int i = m; i > 0; i--)
+    for (int i = num_iterations; i > 0; i--)
     {
-        c = program_output[n - i];
+        c = program_output[length - i];
 
         if (isprint(c))
         {

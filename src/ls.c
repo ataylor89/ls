@@ -22,7 +22,7 @@ int num_digits(long filesize)
     return count;
 }
 
-int preprocess(DirectoryListing* dl)
+int preprocess(DirectoryList* dl)
 {
     Metadata* metadata;
     DIR* dir;
@@ -66,9 +66,9 @@ int preprocess(DirectoryListing* dl)
     return 0;
 }
 
-DirectoryListing* get_directory_listing(char* dirname)
+DirectoryList* get_directory_list(char* dirname)
 {
-    DirectoryListing* dl;
+    DirectoryList* dl;
     Metadata* metadata;
     Record** cursor;
     Record* record;
@@ -79,7 +79,7 @@ DirectoryListing* get_directory_listing(char* dirname)
     struct passwd* pw;
     struct group* gr;
 
-    dl = (DirectoryListing *) malloc(sizeof(DirectoryListing));
+    dl = (DirectoryList *) malloc(sizeof(DirectoryList));
     dl->dirname = dirname;
 
     if (preprocess(dl) != 0)
@@ -132,7 +132,7 @@ DirectoryListing* get_directory_listing(char* dirname)
     return dl;
 }
 
-void format_directory_listing(DirectoryListing* dl)
+void format_directory_list(DirectoryList* dl)
 {
     Metadata* metadata;
     Record** cursor;
@@ -204,7 +204,7 @@ void format_directory_listing(DirectoryListing* dl)
     dl->length = length;
 }
 
-void sort_directory_listing(DirectoryListing* dl)
+void sort_directory_list(DirectoryList* dl)
 {
     Record** records;
     Record* tmp;

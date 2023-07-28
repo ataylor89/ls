@@ -19,7 +19,7 @@ typedef struct Metadata
     char filesize_format[10];
 } Metadata;
 
-typedef struct DirectoryListing
+typedef struct DirectoryList
 {
     char* dirname;
     int num_records;
@@ -27,8 +27,8 @@ typedef struct DirectoryListing
     Metadata* metadata;
     char* buf;
     int length;
-} DirectoryListing;
+} DirectoryList;
 
-DirectoryListing* get_directory_listing(char* dirname);
-void sort_directory_listing(DirectoryListing* dl);
-void format_directory_listing(DirectoryListing* dl);
+DirectoryList* get_directory_list(char* dirname);
+void sort_directory_list(DirectoryList* dl);
+void format_directory_list(DirectoryList* dl);

@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-    DirectoryListing* dl;
+    DirectoryList* dl;
     char* filename;
 
     switch (argc)
@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     
     if ((dl = get_directory_listing(filename)) == NULL)
     {
-        fprintf(stderr, "Error getting directory listing for %s\n", filename);
+        fprintf(stderr, "Error getting directory list for %s\n", filename);
         return 1;
     }
 

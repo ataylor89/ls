@@ -19,15 +19,15 @@ int main(int argc, char** argv)
             return 0;
     }
     
-    if ((dl = get_directory_listing(filename)) == NULL)
+    if ((dl = get_directory_list(filename)) == NULL)
     {
         fprintf(stderr, "Error getting directory list for %s\n", filename);
         return 1;
     }
 
-    sort_directory_listing(dl);
+    sort_directory_list(dl);
 
-    format_directory_listing(dl);
+    format_directory_list(dl);
 
     fwrite(dl->buf, 1, dl->length, stdout);
 

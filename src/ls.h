@@ -1,4 +1,4 @@
-typedef struct Record
+typedef struct
 {
     unsigned char type;
     short mode;
@@ -12,14 +12,14 @@ typedef struct Record
     char filename[256];
 } Record;
 
-typedef struct Metadata
+typedef struct
 {
     long max_filesize;
     int filesize_field_length;
     char filesize_format[10];
 } Metadata;
 
-typedef struct DirectoryList
+typedef struct
 {
     char* dirname;
     int num_records;

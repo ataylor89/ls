@@ -64,6 +64,19 @@ DirectoryList* get_directory_list(char* dirname)
         record->filesize = file_attr.st_size;
         strcpy(record->username, pw->pw_name);
         strcpy(record->groupname, gr->gr_name);
+
+        if (strlen(record->username) > metadata->username_field_length)
+        {
+            metadata->username_field_length = strlen(record->username);
+        }
+        sprintf(metadata->username_format, "%%-%ds", metadata->username_field_length);
+
+        if (strlen(record->groupname) > metadata->groupname_field_length)
+        {
+            metadata->groupname_field_length = strlen(record->groupname);
+        }
+        sprintf(metadata->groupname_format, "%%-%ds", metadata->groupname_field_length);
+
         strftime(record->atime, 32, "%b %d %H:%M", localtime(&file_attr.st_atime));
         strftime(record->mtime, 32, "%b %d %H:%M", localtime(&file_attr.st_mtime));
         strcpy(record->filename, dir_ent->d_name);
@@ -121,13 +134,13 @@ void format_directory_list(DirectoryList* dl)
         strcat(buf, " ");
         offset += 11;
 
-        strcat(buf, record->username);
+        sprintf(buf + offset, metadata->username_format, record->username);
         strcat(buf, " ");
-        offset += strlen(record->username) + 1;
+        offset += metadata->username_field_length + 1;
 
-        strcat(buf, record->groupname);
+        sprintf(buf + offset, metadata->groupname_format, record->groupname);
         strcat(buf, " ");
-        offset += strlen(record->groupname) + 1;
+        offset += metadata->groupname_field_length + 1;
 
         sprintf(buf + offset, metadata->filesize_format, record->filesize);
         strcat(buf, " ");

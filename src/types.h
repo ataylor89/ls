@@ -20,6 +20,10 @@ typedef struct
     long max_filesize;
     int filesize_field_length;
     char filesize_format[10];
+    int username_field_length;
+    char username_format[10];
+    int groupname_field_length;
+    char groupname_format[10];
 } Metadata;
 
 typedef struct
